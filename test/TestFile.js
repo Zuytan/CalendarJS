@@ -6,10 +6,12 @@ function allTest(){
     testEditEvent();
     testExportEvent();
     testImportEvent();
+    testCreateCalendar();
     console.log("%cEnd All Test, Result :", 'color: #800080');
     console.log("\t%cSuccessed Test : "+nbTestPassed+"/"+nbTestTried, 'color: #009000');
 
 }
+
 function testCreateEvent(){
     console.log("%cBeginning Test : Create Event :", 'color: #800080');
     console.log("\tBasic Insertion Begin:");
@@ -149,9 +151,10 @@ function testEditEvent(){
     console.log("\tEdit Price NaN End");
     console.log("%cEnd Test : Edit Event.", 'color: #800080');
 }
-function testImportEvent(){
 
+function testImportEvent(){
 }
+
 function testExportEvent(){
     console.log("%cBeginning Test : Export Event :", 'color: #800080');
     console.log("\tExport Basic Begin:");
@@ -166,6 +169,27 @@ function testExportEvent(){
     }
     
 
-    console.log("\tEdit End Date before Start Date End");
+    console.log("\tExport Basic End");
     console.log("%cEnd Test : Export Event.", 'color: #800080');
+}
+
+function testCreateCalendar(){
+    console.log("%cBeginning Test : Create Calendar :", 'color: #800080');
+    console.log("\tEmpty Calendar Begin :");
+    nbTestTried++;
+    let cal = new Calendar(true);
+    if(cal.allEvents().length == 0) {
+        console.log("\t\t%cSUCCESSED : THE CALENDAR CONTAINS NO DATAS", 'color: #009000');
+        nbTestPassed++;
+    }else console.error("\t\tFAILED : THE CALENDAR CONTAINS DATAS");
+    console.log("\tEmpty Calendar End :");
+    console.log("\tBasic Calendar Begin :");
+    nbTestTried++;
+    cal = new Calendar(true, jsonDatas);
+    if(cal.allEvents().length == 5) {
+        console.log("\t\t%cSUCCESSED : THE CALENDAR CONTAINS DATAS", 'color: #009000');
+        nbTestPassed++;
+    }else console.error("\t\tFAILED : THE CALENDAR CONTAINS NO DATAS");
+    console.log("\tBasic Calendar End :");
+    console.log("%cEnd Test : Create Calendar", 'color: #800080');
 }

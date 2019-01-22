@@ -19,13 +19,13 @@ class EventDict{
                 for(let i=1;i<month;i++){
                     nbDay+=nbDayMonth[i]
                 }
-                return day+nbDay+parseInt(365.2422*year)
+                return parseInt(day+nbDay+parseInt(365.2422*year))
             }
             throw "Invalid format of the date"
         }
         this.startDate = startDate;
         this.endDate = endDate;
-        if(parseInt(this.convertDateToInt(endDate)) < parseInt(this.convertDateToInt(startDate))) throw "The start date can't be after the end date";
+        if(this.convertDateToInt(endDate) < this.convertDateToInt(startDate)) throw "The start date can't be after the end date";
         if(isNaN(price)) throw "Invalid format of the price, must contain at least 1 integer"
         this.price = parseInt(price);
         this.name = name;
@@ -37,6 +37,15 @@ class EventDict{
         return JSON.stringify({begin: this.StartDate, end: this.EndDate, name: this.Name, price: this.Price});
     }
 
+    isBetweenMineDates(date){
+        try{
+            let dateInt = this.convertDateToInt(date)
+            return (dateInt >= this.convertDateToInt(this.startDate) && dateInt <= this.convertDateToInt(this.endDate))? true : false;
+        }catch(e){
+            console.error(e)
+        }
+        
+    }
     /* GETTERS & SETTERS */
     get StartDate(){
         return this.startDate;
@@ -51,11 +60,11 @@ class EventDict{
         return this.name;
     }
     set StartDate(newDate){
-        if(parseInt(this.convertDateToInt(newDate)) > parseInt(this.convertDateToInt(this.endDate))) throw "The start date can't be after the end date";
+        if(this.convertDateToInt(newDate) > this.convertDateToInt(this.endDate)) throw "The start date can't be after the end date";
         this.startDate = newDate;
     }
     set EndDate(newDate){
-        if(parseInt(this.convertDateToInt(this.startDate)) > parseInt(this.convertDateToInt(newDate))) throw "The end date can't be before the start date";
+        if(this.convertDateToInt(this.startDate) > this.convertDateToInt(newDate)) throw "The end date can't be before the start date";
         this.endDate = newDate;
     }
     set Price(newPrice){
