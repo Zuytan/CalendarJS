@@ -10,14 +10,13 @@ class EventDict{
     constructor(startDate, endDate, price, name){
         this.convertDateToInt = function(date) {
             if(date.length == 10){
-                let nbDayMonth = {1 : 31, 2: 28, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31}
                 let nbDay = 0;
                 let year = parseInt(date.substring(6))
                 let month = parseInt(date.substring(3,5))
                 let day = parseInt(date.substring(0,2))
                 if(isNaN(date.substring(6)) || isNaN(date.substring(3,5)) || isNaN(date.substring(0,2))) throw "Invalid format of the date"
                 for(let i=1;i<month;i++){
-                    nbDay+=nbDayMonth[i]
+                    nbDay+=NB_DAY_PER_MONTH[i]
                 }
                 return parseInt(day+nbDay+parseInt(365.2422*year))
             }
