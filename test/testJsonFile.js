@@ -26,7 +26,7 @@ let jsonDatas = "{\
         },\
         {\
             \"begin\" : \"09/02/2019\",\
-            \"end\" : \"10/02/2019\",\
+            \"end\" : \"12/02/2019\",\
             \"price\" : \"100\",\
             \"name\" : \"Margaret\'s Reservation\"\
         }\

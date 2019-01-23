@@ -18,3 +18,11 @@ td {
 .otherMonth {
     background-color: #aaaaaa;
 }
+.event {
+    background-color: #bdc000;
+    color: #ffffff
+}
+.free {
+    background-color: #006e00;
+    color: #ffffff
+}

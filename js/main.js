@@ -2,6 +2,6 @@ const NB_DAY_PER_MONTH = {1 : 31, 2: 28, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 3
 var currentDay = new Date();
 $(document).ready(function(){
     //allTest()
-    let cal = new Calendar(true);
+    let cal = new Calendar(true, jsonDatas);
     let calV = new CalendarView(".calendar", cal)
 })

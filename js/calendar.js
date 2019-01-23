@@ -58,11 +58,20 @@ class Calendar{
     allEvents(){
         return this.events;
     }
-
-    getEventAt(idx){
-        if(idx >= this.events.length || idx < 0) throw "Index out of range"
-        return this.events[i];
+    /**
+     * Method that return the event of a date if existing (null if not)
+     * @param {String} date Date at the format DD/MM/YYYY
+     */
+    getEventAt(date){
+        let outEvent = null;
+        let i = 0;
+        while(outEvent == null && i<this.events.length){
+            if(this.events[i].isBetweenMineDates(date)){
+                outEvent = this.events[i];
+            }
+            i++;
+        }
+        return outEvent
     }
-
     /* GETTERS & SETTERS */
 }

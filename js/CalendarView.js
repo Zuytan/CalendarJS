@@ -18,11 +18,14 @@ class CalendarView{
 
     reloadDatas(){
         let current = new Date(currentDay.getFullYear(), currentDay.getMonth(), 1);
-        let currentNbDay = new Date(currentDay.getFullYear(), currentDay.getMonth()+1, current.getDate()-1).getDate()
-        let previousNbDay = new Date(currentDay.getFullYear(), currentDay.getMonth(), current.getDate()-1).getDate();
+        let currentMonth = new Date(currentDay.getFullYear(), currentDay.getMonth()+1, current.getDate()-1);
+        let previousMonth = new Date(currentDay.getFullYear(), currentDay.getMonth(), current.getDate()-1);
+        let currentNbDay = currentMonth.getDate();
+        let previousNbDay = previousMonth.getDate();
         let firstDay = ((current.getDay()-1)+7)%7
         let count = 1;
         let otherMonth = false;
+        let isReserved = false;
         if(firstDay != 0){
             count = previousNbDay-(firstDay-1);
             otherMonth = true;
@@ -36,8 +39,9 @@ class CalendarView{
         for(let i=0; i<5; i++){
             content += "<tr>";
             for(let j = 0; j<7; j++){
-                let nbDayMonth = (otherMonth)? previousNbDay+1 : currentNbDay+1;
-                content += "<td class='day "+((otherMonth)?"otherMonth":"")+"'><div>"+count+"</div></td>";
+                let nbDayMonth = (otherMonth)?previousNbDay+1:currentNbDay+1;
+                isReserved = (this.model.getEventAt(""+count+"/"+(currentMonth.getMonth()+1)+"/"+currentMonth.getFullYear()) != null)
+                content += "<td class='day "+((otherMonth)?" otherMonth":"")+((isReserved && !otherMonth)?" event":"")+"'><div>"+count+"</div></td>";
                 otherMonth = (count > (count+1)%nbDayMonth) ? !otherMonth:otherMonth;
                 count = ((count+1)%nbDayMonth == 0) ? 1 : ((count+1)%nbDayMonth);
             }

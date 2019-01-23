@@ -2,25 +2,22 @@ class EventDict{
     /* CONSTRUCTORS */
     /**
      * This represent an event in the calendar. Dates are saved as the number of day from the year 0
+     * 
      * @param {String} startDate Start date of the event. Must be at the format "DD/MM/YYYY"
      * @param {String} endDate End date of the event. Must be at the format "DD/MM/YYYY"
      * @param {int} price Price of the event
-     * @param {String} name Name of the event
+     * @param {String} name Name of the event(empty by default)
      */
-    constructor(startDate, endDate, price, name){
+    constructor(startDate, endDate, price, name = ""){
         this.convertDateToInt = function(date) {
-            if(date.length == 10){
-                let nbDay = 0;
-                let year = parseInt(date.substring(6))
-                let month = parseInt(date.substring(3,5))
-                let day = parseInt(date.substring(0,2))
-                if(isNaN(date.substring(6)) || isNaN(date.substring(3,5)) || isNaN(date.substring(0,2))) throw "Invalid format of the date"
-                for(let i=1;i<month;i++){
-                    nbDay+=NB_DAY_PER_MONTH[i]
-                }
-                return parseInt(day+nbDay+parseInt(365.2422*year))
+            let nbDay = 0;
+            let dateArr = date.split("/")
+            if(isNaN(dateArr[0]) || isNaN(dateArr[1]) || isNaN(dateArr[2] || dateArr[2].length == 4)) 
+                throw "Invalid format of the date"
+            for(let i=1;i<dateArr[1];i++){
+                nbDay += new Date(dateArr[2], i, 0).getDate();
             }
-            throw "Invalid format of the date"
+            return parseInt(dateArr[0])+nbDay+parseInt(365.2422*dateArr[2])
         }
         this.startDate = startDate;
         this.endDate = endDate;
