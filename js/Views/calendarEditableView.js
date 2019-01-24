@@ -3,6 +3,11 @@ class CalendarEditableView extends CalendarView{
         super(container, model);
     }
     initTable(){
-        console.log("coucou");
+        super.initTable();
+        $('.day').on("click", ()=>{
+            $(".calendar").addClass("overlayOn")
+        })
+        
+
     }
 }

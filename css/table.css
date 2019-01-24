@@ -24,6 +24,10 @@ td {
 .day.otherMonth.free {
     background-color: #aaaaaa;
 }
+.day.otherMonth.free:hover {
+    background-color: #aaaaaa;
+    cursor: default;
+}
 .event {
     background-color: hsl(0, 100%, 41%);
     color: #ffffff
@@ -43,3 +47,16 @@ td {
     vertical-align: middle;
     text-align: left;
 }
+.calendar.overlayOn{
+    opacity : 0.2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+.day.free:hover{
+    background-color: #004d00;
+    color: #ffffff;
+    cursor: pointer;
+}
+    

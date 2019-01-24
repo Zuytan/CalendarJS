@@ -62,7 +62,7 @@ class CalendarView{
         }
         $("#calendar").html("");
         $("#calendar").append(content);
-        $("#currentMonth").html(MONTHS[currentDay.getMonth()])
+        $("#currentMonth").html(MONTHS[currentDay.getMonth()]+" "+currentDay.getFullYear())
     }
 
     previous(){

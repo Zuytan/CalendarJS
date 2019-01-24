@@ -5,5 +5,5 @@ $(document).ready(function(){
     //allTest()
     let cal = new Calendar(true, jsonDatas);
     cal.loadPeriods(periodsDatas);
-    let calV = new CalendarView(".calendar", cal)
+    let calV = new CalendarEditableView(".calendar", cal)
 })
