@@ -1,28 +1,45 @@
+#calendar{
+    height: 50vh;
+}
+
 table {
-    border: medium solid #6495ed;
-    border-collapse: collapse;
+    border: medium #6495ed;
+    font-size: 2.5vw;
     width: 100%;
+    height: 100%;
 }
 th {
     border: thin solid #6495ed;
-    padding: 5px;
+    width: 14.28%;
+    height: 17%;
     background-color: #D0E3FA;
 }
 td {
     border: thin solid #6495ed;
-    padding: 5px;
+    text-align: right;
     width: 14.28%;
-    text-align: center;
+    height: 17%;
     background-color: #ffffff;
 }
-.otherMonth {
+.day.otherMonth.free {
     background-color: #aaaaaa;
 }
 .event {
-    background-color: #bdc000;
+    background-color: hsl(0, 100%, 41%);
     color: #ffffff
 }
-.free {
+.day.free {
     background-color: #006e00;
     color: #ffffff
+}
+#currentMonth{
+    text-align: center;
+}
+.dayNumber{
+    vertical-align: top;
+    text-align: right;
+}
+.name{
+    vertical-align: middle;
+    text-align: left;
 }

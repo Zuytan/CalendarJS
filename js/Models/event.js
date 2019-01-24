@@ -5,10 +5,9 @@ class EventDict{
      * 
      * @param {String} startDate Start date of the event. Must be at the format "DD/MM/YYYY"
      * @param {String} endDate End date of the event. Must be at the format "DD/MM/YYYY"
-     * @param {int} price Price of the event
      * @param {String} name Name of the event(empty by default)
      */
-    constructor(startDate, endDate, price, name = ""){
+    constructor(startDate, endDate){
         this.convertDateToInt = function(date) {
             let nbDay = 0;
             let dateArr = date.split("/")
@@ -21,22 +20,21 @@ class EventDict{
         }
         this.startDate = startDate;
         this.endDate = endDate;
-        if(this.convertDateToInt(endDate) < this.convertDateToInt(startDate)) throw "The start date can't be after the end date";
-        if(isNaN(price)) throw "Invalid format of the price, must contain at least 1 integer"
-        this.price = parseInt(price);
-        this.name = name;
+        this.startInt = this.convertDateToInt(startDate);
+        this.endInt = this.convertDateToInt(endDate)
+        if(this.endInt < this.startInt) throw "The start date can't be after the end date";
     }
 
 
     /* FUNCTIONS */
     exportJSON(){
-        return JSON.stringify({begin: this.StartDate, end: this.EndDate, name: this.Name, price: this.Price});
+        return JSON.stringify({begin: this.StartDate, end: this.EndDate});
     }
 
     isBetweenMineDates(date){
         try{
             let dateInt = this.convertDateToInt(date)
-            return (dateInt >= this.convertDateToInt(this.startDate) && dateInt <= this.convertDateToInt(this.endDate))? true : false;
+            return (dateInt >= this.startInt && dateInt <= this.endInt)? true : false;
         }catch(e){
             console.error(e)
         }
@@ -49,25 +47,17 @@ class EventDict{
     get EndDate(){
         return this.endDate;
     }
-    get Price(){
-        return this.price;
-    }
-    get Name(){
-        return this.name;
-    }
     set StartDate(newDate){
-        if(this.convertDateToInt(newDate) > this.convertDateToInt(this.endDate)) throw "The start date can't be after the end date";
+        let newInt = this.convertDateToInt(newDate);
+        if(newInt > endInt) throw "The start date can't be after the end date";
         this.startDate = newDate;
+        this.startInt = newInt;
     }
     set EndDate(newDate){
-        if(this.convertDateToInt(this.startDate) > this.convertDateToInt(newDate)) throw "The end date can't be before the start date";
+        let newInt = this.convertDateToInt(newDate);
+        if(this.startInt > newInt) throw "The end date can't be before the start date";
         this.endDate = newDate;
+        this.endint = newint;
     }
-    set Price(newPrice){
-        if(isNaN(newPrice)) throw "The price must be a number"
-        this.price = parseInt(newPrice);
-    }
-    set Name(newName){
-        this.name = newName;
-    }
+    
 }

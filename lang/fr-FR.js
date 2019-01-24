@@ -2,3 +2,5 @@ const MONTHS = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet"
 const DAYS_OF_THE_WEEK = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"]
 const PREVIOUS_BTN = "Precedent";
 const NEXT_BTN = "Suivant";
+const PRICE_UNKNOWN = "Non spécifié";
+const PRICE = "Prix :";

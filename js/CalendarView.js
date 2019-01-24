@@ -40,8 +40,21 @@ class CalendarView{
             content += "<tr>";
             for(let j = 0; j<7; j++){
                 let nbDayMonth = (otherMonth)?previousNbDay+1:currentNbDay+1;
-                isReserved = (this.model.getEventAt(""+count+"/"+(currentMonth.getMonth()+1)+"/"+currentMonth.getFullYear()) != null)
-                content += "<td class='day "+((otherMonth)?" otherMonth":"")+((isReserved && !otherMonth)?" event":"")+"'><div>"+count+"</div></td>";
+                let date = ""+count+"/"+(currentMonth.getMonth()+1)+"/"+currentMonth.getFullYear()
+                let evt = this.model.getEventAt(date);
+                isReserved = (evt != null)
+                content += "<td class='day"+((otherMonth)?" otherMonth":"")+((isReserved && !otherMonth)?" event":" free")+"'>";
+                content += "<div class='dayNumber'>"+count+"</div>"
+                content += "<div class='name'>";
+                if (!otherMonth){
+                    if(isReserved){
+                        content += evt.Name
+                    }else{
+                        let price = this.model.getPriceAt(date)
+                        content += PRICE + " "+ ((price != "") ? price: PRICE_UNKNOWN);
+                    }
+                }
+                content += "</div></td>";
                 otherMonth = (count > (count+1)%nbDayMonth) ? !otherMonth:otherMonth;
                 count = ((count+1)%nbDayMonth == 0) ? 1 : ((count+1)%nbDayMonth);
             }
